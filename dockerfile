@@ -12,5 +12,3 @@ COPY --from=build /app/target/maven-web-application.war /usr/local/tomcat/webapp
 EXPOSE 8080
  
 CMD ["catalina.sh", "run"]
-
-CMD ["mvn", "jetty:run"]
