@@ -1,4 +1,5 @@
-FROM openjdk:latest
+FROM maven:latest
+
 WORKDIR /usr/src/app
 COPY . .
 EXPOSE 8090
