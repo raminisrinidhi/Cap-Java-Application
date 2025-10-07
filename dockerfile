@@ -1,23 +1,21 @@
-FROM maven:latest
+# Stage 1: Build the application
+FROM maven:latest AS build
+
 WORKDIR /app
+
 COPY pom.xml .
 COPY src ./src
 
-# Package the application
 RUN mvn clean package -DskipTests
 
-# Use an official OpenJDK runtime as a parent image
+# Stage 2: Run the application
 FROM openjdk:latest
 
-# Set the working directory
 WORKDIR /app
 
 # Copy the packaged JAR file from the build stage
 COPY --from=build /app/target/myapp.jar ./myapp.jar
 
-# Expose the application port
 EXPOSE 8078
 
-# Command to run the application
 CMD ["java", "-jar", "myapp.jar"]
- 
