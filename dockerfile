@@ -1,5 +1,4 @@
 FROM openjdk:latest
-RUN npm install
 WORKDIR /usr/src/app
 COPY . .
 EXPOSE 8090
