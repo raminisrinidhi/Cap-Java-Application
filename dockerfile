@@ -4,15 +4,13 @@ WORKDIR /app
 COPY pom.xml .
 COPY src ./src
 RUN mvn clean package -DskipTests
-
-# Stage 2: Run the application
-FROM openjdk:latest
-
-WORKDIR /app
-
-# Copy the packaged JAR file from the build stage
-COPY --from=build /app/target/maven-web-application.war ./myapp.war
-
-EXPOSE 8078
+ 
+# Stage 2: Deploy to Tomcat
+FROM tomcat:9.0
+COPY --from=build /app/target/maven-web-application.war /usr/local/tomcat/webapps/ROOT.war
+ 
+EXPOSE 8080
+ 
+CMD ["catalina.sh", "run"]
 
 CMD ["mvn", "jetty:run"]

@@ -130,8 +130,7 @@
 				<configuration>
 					<scanIntervalSeconds>10</scanIntervalSeconds>
 					<webApp>
-						<contextPath>http://localhost:8075/maven-web-application/
-</contextPath>
+						<contextPath>/maven-web-application</contextPath>
 					</webApp>
 				</configuration>
 			</plugin>
