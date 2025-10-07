@@ -14,8 +14,8 @@ FROM openjdk:latest
 WORKDIR /app
 
 # Copy the packaged JAR file from the build stage
-COPY --from=build /app/target/myapp.jar ./myapp.jar
+COPY --from=build /app/target/maven-web-application.war ./myapp.war
 
 EXPOSE 8078
 
-CMD ["java", "-jar", "myapp.jar"]
+CMD ["java", "-jar", "myapp.war"]
